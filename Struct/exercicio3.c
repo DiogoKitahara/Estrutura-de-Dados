@@ -20,6 +20,7 @@ struct paciente informaDados() {
 
 int main() {
 	struct paciente p1 = informaDados();
+	printf("------Dados do paciente------\n");
 	printf("Codigo: %d\n", p1.codigo);
 	printf("Idade: %d\n", p1.idade);
 	printf("Altura: %.2f\n", p1.altura);

@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-int jogo_advinhacao (int tentativa) {
-	int n = 74;
-	if (tentativa < 74) {
+int jogo_advinhacao (int tentativa, int n) {
+	if (tentativa < n) {
 		printf("O numero e maior\n");
 		return 0;
 	}
-	else if (tentativa > 74) {
+	else if (tentativa > n) {
 		printf("O numero e menor\n");
 		return 0;
 	}
@@ -17,14 +18,16 @@ int jogo_advinhacao (int tentativa) {
 
 int main() {
 	// Declarar variaveis 
-	int i, tentativa, resultado, contador = 0;
+	int n, i, tentativa, resultado, contador = 0;
+	srand(time(NULL));
+	n = rand() % 101;
 	// Loop para tentativa de ate 10 vezes
 	while(contador < 10) {
 		// Perguntar o numero
 		printf("Numero: ");
 		scanf("%d", &tentativa);
 		// Funcao para comparar
-		resultado = jogo_advinhacao(tentativa);
+		resultado = jogo_advinhacao(tentativa, n);
 		if (resultado == 1){
 			printf("Acertou!\n");
 			return 0;

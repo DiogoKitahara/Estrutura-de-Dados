@@ -11,5 +11,5 @@ int main() {
 	printf("Valor de y: ");
 	scanf("%d", &y);
 	soma_valores = soma(&x, &y);
-	printf("A soma dos valores e: %d", soma_valores);
+	printf("A soma dos valores e: %d\n", soma_valores);
 }

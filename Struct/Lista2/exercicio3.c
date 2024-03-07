@@ -4,9 +4,9 @@ struct paciente {
 	float peso, altura;
 };
 
-float calcularImc(struct paciente* p) {
+float calcularImc(struct paciente p) {
 	float resultado = p.peso / (p.altura * p.altura);
-	return resultado
+	return resultado;
 }
 
 void imprimirResultado(float imc) {
@@ -37,6 +37,6 @@ int main() {
 	scanf("%f", &p.peso);
 	printf("Altura: ");
 	scanf("%f", &p.altura);
-	imc = calcularImc(&p);
+	imc = calcularImc(p);
 	imprimirResultado(imc);
 }

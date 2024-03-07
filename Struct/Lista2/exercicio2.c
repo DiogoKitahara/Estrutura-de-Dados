@@ -10,8 +10,8 @@ struct boleto {
 	float preco;
 };
 
-int main() {
-	struct boleto b;
+struct boleto informar() {
+    struct boleto b;
 	printf("Nome: ");
 	gets(b.nome);
 	printf("Preco: ");
@@ -22,9 +22,14 @@ int main() {
 	scanf("%d", &b.d.mes);
 	printf("Ano: ");
 	scanf("%d", &b.d.ano);
-	printf("---------------------------------\n");
+    return b;
+}
+
+int main() {
+    struct boleto b = informar();
+    printf("---------------------------------\n");
 	printf("Nome: ");
 	puts(b.nome);
 	printf("Preco: %.2f\n", b.preco);
-	printf("Data: %d/%d/%d", b.d.dia, b.d.mes, b.d.ano);
+	printf("Data: %d/%d/%d\n", b.d.dia, b.d.mes, b.d.ano);
 }

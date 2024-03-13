@@ -17,22 +17,39 @@ void ler(funcionario f[]) {
 	for(i = 0; i < TF; i++) {
 		printf("Nome: ");
 		fflush(stdin);
-		gets(f.nome);
-		printf("Sexo: ");
+		gets(f[i].nome);
+		printf("Sexo[M / F]: ");
 		fflush(stdin);
-		scanf("%c", f.sexo);
+		scanf(" %c", &f[i].sexo);
 		printf("CPF: ");
 		fflush(stdin);
-		gets(f.cpf);
+		gets(f[i].cpf);
 		printf("Cargo: ");
 		fflush(stdin);
-		gets(f.cargo);
+		gets(f[i].cargo);
 		printf("Codigo: ");
-		scanf("%d", f.codigo);
+		scanf("%d", &f[i].codigo);
 		printf("Idade: ");
-		scanf("%d", f.idade);
+		scanf("%d", &f[i].idade);
 		printf("Salario: ");
-		scanf("%f", f.salario);
+		scanf("%f", &f[i].salario);
+	}
+}
+
+void imprimir (funcionario f[]) {
+	int i;
+	for (i = 0; i < TF; i++) {
+		printf("-------------------------------\n");
+		printf("Nome: ");
+		puts(f[i].nome);
+		printf("Sexo: %c\n", f[i].sexo);
+		printf("CPF: ");
+		puts(f[i].cpf);
+		printf("Cargo: ");
+		puts(f[i].cargo);
+		printf("Codigo: %d\n", f[i].codigo);
+		printf("Idade: %d\n", f[i].idade);
+		printf("Salario: %.2f\n", f[i].salario);
 	}
 }
 

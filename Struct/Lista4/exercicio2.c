@@ -28,8 +28,10 @@ void ler(produto p[])
         printf("Codigo: ");
         scanf("%d", &p[i].codigo);
         printf("Tipo");
+        fflush(stdin);
         gets(p[i].tipo);
         printf("Descricao");
+        fflush(stdin);
         gets(p[i].descricao);
         printf("Preco: ");
         scanf("%f", &p[i].preco);

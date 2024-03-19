@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define TF 3
+#define TF 10
 
 typedef struct {
     int codigo, quantidade_horas;
@@ -13,8 +13,10 @@ void ler(curso s[]) {
         printf("Codigo: ");
         scanf("%d", &s[i].codigo);
         printf("Titulo: ");
+        fflush(stdin);
         gets(s[i].titulo);
         printf("Instrutor: ");
+        fflush(stdin);
         gets(s[i].instrutor);
         printf("Preco: ");
         scanf("%f", &s[i].preco);
@@ -24,9 +26,9 @@ void ler(curso s[]) {
     }
 }
 
-void procurar(curso s[]) {
+void procurarCurso(curso s[]) {
     int i, codigo;
-    printf("Digite o codigo do curso: ");
+    printf("Digite o codigo do curso que deseja saber: ");
     scanf("%d", &codigo);
     for(i = 0; i < TF; i++) {
         if (s[i].codigo == codigo){
@@ -34,16 +36,17 @@ void procurar(curso s[]) {
             puts(s[i].titulo);
             printf("Instrutor: ");
             puts(s[i].instrutor);
-            printf("Preco: %.2f", s[i].preco);
-            printf("Quantidade de hotas: %d", s[i].quantidade_horas);
+            printf("Preco: %.2f\n", s[i].preco);
+            printf("Quantidade de hotas: %d\n", s[i].quantidade_horas);
             printf("-------------------------------\n");
             return;
         }
     }
     printf("Codigo nao encontrado\n");
+    printf("-------------------------------\n");
 }
 
-float media_preco(curso s[]) {
+float mediaPreco(curso s[]) {
     int i;
     float soma = 0;
     for (i = 0; i < TF; i++) {
@@ -52,7 +55,7 @@ float media_preco(curso s[]) {
     return (float) soma / TF;
 }
 
-float media_tempo(curso s[]) {
+float mediaTempo(curso s[]) {
     int i;
     float soma = 0;
     for (i = 0; i < TF; i++) {

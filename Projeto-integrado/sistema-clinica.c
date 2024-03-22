@@ -2,9 +2,8 @@
 10442324882 - ANA BEATRIZ BARILLI NOGUEIRA
 10442324176 - DEBORA JANAINE LAGOS SOARES
 10442324069 - DIOGO SEIDI KITAHARA
-10442324748 - IGOR MORALES PEREIRA
 10442324819 - LUIS FILIPE EDUARDO DE MORAES
-10442324550 - VIDALEGRE VENTURA BASTOS
+10442324247 - HUGO DE SOUZA DIAS
 10442324612 - YURI MARQUES PILONI
 */
 
@@ -29,6 +28,9 @@ void menuCadastro() {
     printf("2 - Paciente\n");
     printf("3 - Procedimento\n");
     printf("4 - Produto\n");
+    printf("5 - Exame\n");
+    printf("6 - Laboratorio\n");
+    printf("7 - Fornecedor\n");
     printf("0 - Retornar\n\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
 }
@@ -40,6 +42,9 @@ void menuExclusao() {
     printf("3 - Procedimento\n");
     printf("4 - Lancamento\n");
     printf("5 - Produto\n");
+    printf("6 - Exame\n");
+    printf("7 - Laboratorio\n");
+    printf("8 - Fornecedor\n");
 	printf("0 - Retornar\n\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-\n");          
 }
@@ -55,6 +60,9 @@ void menuRelatorio() {
     printf("3 - Procedimento\n");
     printf("4 - Lancamento\n");
     printf("5 - Produto\n");
+    printf("6 - Exame\n");
+    printf("7 - Laboratorio\n");
+    printf("8 - Fornecedor\n");
     printf("0 - Retornar\n\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 }
@@ -189,6 +197,21 @@ int main(void)
 					break;
 				case 4:
 					printf("Cadastro de Produto em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 5:
+					printf("Cadastro de Exames em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 6:
+					printf("Cadastro de Laboratorio em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 7:
+					printf("Cadastro de Fornecedor em Desenvolvimento!\n");
 					system("pause");
 					system("cls");
 					break;
@@ -341,6 +364,21 @@ int main(void)
 					system("pause");
 					system("cls");
 					break;
+				case 6:
+					printf("Exclusao de Exames em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 7:
+					printf("Exclusao de Laboratorio em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 8:
+					printf("Exclusao de Fornecedor em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
 				case 0:
 					system("cls");
 					break;
@@ -487,9 +525,23 @@ int main(void)
 					system("pause");
                 	system("cls");
 					break;
-				// Retornar
 				case 5:
 					printf("Relatorio de Produto em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 6:
+					printf("Relatorio de Exames em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 7:
+					printf("Relatorio de Laboratorio em Desenvolvimento!\n");
+					system("pause");
+					system("cls");
+					break;
+				case 8:
+					printf("Relatorio de Fornecedor em Desenvolvimento!\n");
 					system("pause");
 					system("cls");
 					break;

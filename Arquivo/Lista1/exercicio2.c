@@ -18,8 +18,9 @@ main() {
 		printf("Erro no arquivo\n");
 	}
 	printf("Lendo e mostrando os dados do aquivo...\n");
-	do {
-		car = fgetc(arq);
+	car = fgetc(arq);
+	while(car != EOF){
 		printf("%c", car);
-	} while(car != EOF);
+		car = fgetc(arq);
+	}
 }

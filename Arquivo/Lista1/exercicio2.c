@@ -1,26 +1,30 @@
 #include <stdio.h>
 
 main() {
-	FILE* arq;
-	char car;
-	arq = fopen("arq.txt", "w");
-	if (arq == NULL) {
-		printf("Erro no arquivo\n");
+	FILE* fp;
+	char letra;
+	fp = fopen("arq.txt", "w");
+	if (fp == NULL) {
+		printf("Erro na abertura do arquivo\n");
 	}
-	do {
-		printf("Digite um caractere: ");
-		scanf(" %c", &car);
-		fputc(car,arq);
-	} while (car != '0');
-	fclose(arq);
-	arq = fopen("arq.txt", "r");
-	if (arq == NULL) {
-		printf("Erro no arquivo\n");
+	printf("Caractere [0 - cancelar]: ");
+	fflush(stdin);
+	scanf("%c", &letra);
+	while(letra != '0') {
+		putc(letra, fp);
+		printf("Caractere [0 - cancelar]: ");
+		fflush(stdin);
+		scanf("%c", &letra);
 	}
-	printf("Lendo e mostrando os dados do aquivo...\n");
-	car = fgetc(arq);
-	while(car != EOF){
-		printf("%c", car);
-		car = fgetc(arq);
+	fclose(fp);
+	fp = fopen("arq.txt", "r");
+	if (fp == NULL ) {
+		printf("Erro na abertura do arquivo\n");
 	}
+	letra = getc(fp);
+	while (letra != EOF) {
+		printf("%c", letra);
+		letra = getc(fp);
+	}
+	fclose(fp);
 }

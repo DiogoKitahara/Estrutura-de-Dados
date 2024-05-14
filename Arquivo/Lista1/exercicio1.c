@@ -1,17 +1,16 @@
 #include <stdio.h>
 
-int main() {
-	FILE *f;
+main() {
+	FILE* fp;
 	int i;
 	char letra = 'a';
-	f = fopen("dados.txt", "w");
-	if (f == NULL) {
-		printf("Nao foi possivel abrir o arquivo\n");
+	fp = fopen("dados.txt", "w");
+	if (fp == NULL) {
+		printf("Erro na abertura do arquivo\n");
 	}
-	else {
-		for(i = 0; i < 26; i++) {
-			putc(letra, f);
-			letra++;
-		}
+	for (i = 0; i < 26; i++) {
+		putc(letra, fp);
+		letra++;
 	}
+	fclose(fp);
 }

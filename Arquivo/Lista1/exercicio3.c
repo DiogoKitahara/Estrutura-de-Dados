@@ -1,18 +1,21 @@
 #include <stdio.h>
+#include <string.h>
 
 main() {
-	FILE* arq;
-	char nomearq[20];
-	int atdc = 0;
-	printf("Digite o nome do arquivo: ");
-	gets(nomearq);
-	arq = fopen(nomearq, "r");
-	if arq == NULL) {
-		printf("Erro no arquivo\n");
+	FILE* fp;
+	char nome_arquivo[20], letra;
+	int contador = 0;
+	printf("Contar quantidade de caracteres no arquivo: ");
+	gets(nome_arquivo);
+	fp = fopen(nome_arquivo, "r");
+	if (fp == NULL)	{
+		printf("Erro na abertura do arquivo\n");
 	}
-	while (getc(arq) != EOF) {
-		qtdc++;
+	letra = getc(fp);
+	while (letra != EOF) {
+		contador++;
+		letra = getc(fp);
 	}
-	printf("A quantidade de caracteres e %d", qtdc);
-	fclose(arq);
+	fclose(fp);
+	printf("%d caracteres\n", contador);
 }

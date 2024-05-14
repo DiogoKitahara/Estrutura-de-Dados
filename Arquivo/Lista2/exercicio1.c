@@ -1,14 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 
 main() {
-	FILE* arq;
-	char curso[20];
-	arq = fopen("curso.txt", "w");
-	if (arq == NULL) {
-		printf("Erro no arquivo\n");
+	FILE* fp;
+	char nome_curso[20] = "";
+	fp = fopen("curso.txt", "w");
+	if (fp == NULL) {
+		printf("Erro na abertura do arquivo\n");
 	}
-	printf("Curso: ");
-	gets(curso);
-	fputs(curso, arq);
-	//fprintf(arq, "%s", curso);
+	printf("Nome do curso: ");
+	fflush(stdin);
+	gets(nome_curso);
+	fputs(nome_curso, fp);
+	fclose(fp);
 }

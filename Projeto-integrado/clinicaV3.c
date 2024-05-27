@@ -45,6 +45,7 @@ void menuExclusao();
 void menuAgendamento(); 
 void menuRelatorio();
 void menuAlterar();
+void menuOrdenar();
 int buscaMedico(FILE *arquivo,int codigo);
 int buscaPaciente(FILE *arquivo,int codigo);
 int buscaProcedimento(FILE *arquivo,int codigo);
@@ -70,6 +71,10 @@ void relatorioPaciente();
 void relatorioProcedimento(); 
 void relatorioAgendamento(); 
 void relatorioMaterial();
+void metodo_bolha_medico();
+void metodo_bolha_paciente();
+void metodo_bolha_procedimento();
+void metodo_bolha_material();
 
 main() {
 	medico med;
@@ -229,6 +234,35 @@ main() {
 						system("cls");
 				}
 				break;
+			case 6:
+				menuOrdenar();
+				printf("Operacao: ");
+				scanf("%d", &op2);
+				system("cls");
+				switch(op2) {
+					case 1:
+						metodo_bolha_medico();
+						system("pause");
+						system("cls");
+						break;
+					case 2:
+						metodo_bolha_paciente();
+						system("pause");
+						system("cls");
+						break;
+					case 3:
+						metodo_bolha_procedimento();
+						system("pause");
+						system("cls");
+						break;
+					case 4:
+						metodo_bolha_material();
+						system("pause");
+						system("cls");
+						break;
+					case 0:
+						break;
+				}
 			case 0:
 				break;
 		}
@@ -242,6 +276,7 @@ void menuInicial() {
     printf("3 - Alterar\n");
     printf("4 - Agendar\n");
     printf("5 - Relatorio\n");
+    printf("6 - Ordenar\n");
     printf("0 - Finalizar\n\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-\n");
 }
@@ -289,6 +324,16 @@ void menuAlterar() {
     printf("3 - Procedimento\n");
     printf("4 - Agendamento\n");
     printf("5 - Material\n");
+    printf("0 - Retornar\n\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+}
+
+void menuOrdenar() {
+    printf("=-=-=-=- Ordenar =-=-=-=-\n\n");
+    printf("1 - Medico\n");
+    printf("2 - Paciente\n");
+    printf("3 - Procedimento\n");
+    printf("4 - Material\n");
     printf("0 - Retornar\n\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 }
@@ -1328,7 +1373,7 @@ void relatorioAgendamento() {
 			printf("Data de nascimento: %s\n\n", age.pac.nascimento);
 			printf("________Procedimento_________\n\n");
 			printf("Nome do Procedimento: %s\n", age.proc.nome);
-			printf("Codigo: %d\n", age.proc.codigo);
+			printf("Codigo: %d\n\n", age.proc.codigo);
 			printf("_________Agendamento_________\n\n");
 			printf("Data: %s\n", age.data);
 			printf("Horario: %d:%d\n", age.hora, age.minuto);
@@ -1356,4 +1401,120 @@ void relatorioMaterial() {
 		}
 	}
 	fclose(fp);
+}
+
+void metodo_bolha_medico() {
+    FILE *arquivo;
+    medico ctti, ctti_1;
+    int i, qtde = 0;
+    arquivo = fopen("medico.bin", "rb+");
+    if (arquivo == NULL) {
+        printf("Erro no arquivo\n");
+        return;
+    }
+    fseek(arquivo, 0, SEEK_END);
+    qtde = ftell(arquivo) / sizeof(medico);
+    while (qtde > 1) {
+        for (i = 0; i < qtde - 1; i++) {
+            fseek(arquivo, i * sizeof(medico), SEEK_SET);
+            fread(&ctti, sizeof(medico), 1, arquivo);
+            fread(&ctti_1, sizeof(medico), 1, arquivo);
+
+            if (strcmp(ctti.nome, ctti_1.nome) > 0) {
+                fseek(arquivo, i * sizeof(medico), SEEK_SET);
+                fwrite(&ctti_1, sizeof(medico), 1, arquivo);
+                fwrite(&ctti, sizeof(medico), 1, arquivo);
+            }
+        }
+        qtde--;
+    }
+    fclose(arquivo);
+    printf("Medico ordenado com sucesso!\n");
+}
+
+void metodo_bolha_paciente() {
+    FILE *arquivo;
+    paciente ctti, ctti_1;
+    int i, qtde = 0;
+    arquivo = fopen("paciente.bin", "rb+");
+    if (arquivo == NULL) {
+        printf("Erro no arquivo\n");
+        return;
+    }
+    fseek(arquivo, 0, SEEK_END);
+    qtde = ftell(arquivo) / sizeof(paciente);
+    while (qtde > 1) {
+        for (i = 0; i < qtde - 1; i++) {
+            fseek(arquivo, i * sizeof(paciente), SEEK_SET);
+            fread(&ctti, sizeof(paciente), 1, arquivo);
+            fread(&ctti_1, sizeof(paciente), 1, arquivo);
+
+            if (strcmp(ctti.nome, ctti_1.nome) > 0) {
+                fseek(arquivo, i * sizeof(paciente), SEEK_SET);
+                fwrite(&ctti_1, sizeof(paciente), 1, arquivo);
+                fwrite(&ctti, sizeof(paciente), 1, arquivo);
+            }
+        }
+        qtde--;
+    }
+    fclose(arquivo);
+    printf("Paciente ordenado com sucesso!\n");
+}
+
+void metodo_bolha_procedimento() {
+    FILE *arquivo;
+    procedimento ctti, ctti_1;
+    int i, qtde = 0;
+    arquivo = fopen("procedimento.bin", "rb+");
+    if (arquivo == NULL) {
+        printf("Erro no arquivo\n");
+        return;
+    }
+    fseek(arquivo, 0, SEEK_END);
+    qtde = ftell(arquivo) / sizeof(procedimento);
+    while (qtde > 1) {
+        for (i = 0; i < qtde - 1; i++) {
+            fseek(arquivo, i * sizeof(procedimento), SEEK_SET);
+            fread(&ctti, sizeof(procedimento), 1, arquivo);
+            fread(&ctti_1, sizeof(procedimento), 1, arquivo);
+
+            if (strcmp(ctti.nome, ctti_1.nome) > 0) {
+                fseek(arquivo, i * sizeof(procedimento), SEEK_SET);
+                fwrite(&ctti_1, sizeof(procedimento), 1, arquivo);
+                fwrite(&ctti, sizeof(procedimento), 1, arquivo);
+            }
+        }
+        qtde--;
+    }
+    fclose(arquivo);
+    printf("Procedimento ordenado com sucesso!\n");
+}
+
+void metodo_bolha_material() {
+    FILE *arquivo;
+    material ctti, ctti_1;
+    int i, qtde = 0;
+    arquivo = fopen("material.bin", "rb+");
+    if (arquivo == NULL) {
+        printf("Erro no arquivo\n");
+        return;
+    }
+    fseek(arquivo, 0, SEEK_END);
+    qtde = ftell(arquivo) / sizeof(material);
+    while (qtde > 1) {
+        for (i = 0; i < qtde - 1; i++) {
+            fseek(arquivo, i * sizeof(material), SEEK_SET);
+            fread(&ctti, sizeof(material), 1, arquivo);
+            fread(&ctti_1, sizeof(material), 1, arquivo);
+
+            if (strcmp(ctti.nome, ctti_1.nome) > 0) {
+                fseek(arquivo, i * sizeof(material), SEEK_SET);
+                fwrite(&ctti_1, sizeof(material), 1, arquivo);
+                fwrite(&ctti, sizeof(material), 1, arquivo);
+            }
+        }
+        qtde--;
+    }
+    fclose(arquivo);
+    printf("Material ordenado com sucesso!\n");
 }

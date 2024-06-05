@@ -1231,7 +1231,7 @@ void agendar() {
 		printf("Erro na abertura do arquivo\n");
 		return;
 	}
-	printf("Crm: ");
+	printf("CRM: ");
 	scanf("%d", &crm);
 	posm = buscaMedico(fp2, crm);
 	if (posm == -1 ) {

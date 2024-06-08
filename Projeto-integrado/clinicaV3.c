@@ -81,6 +81,17 @@ main() {
 	paciente pac;
 	procedimento proc;
 	int op, op2;
+	FILE* fp;
+	fp = fopen("medico.bin", "ab");
+	fclose(fp);
+	fp = fopen("paciente.bin", "ab");
+	fclose(fp);
+	fp = fopen("procedimento.bin", "ab");
+	fclose(fp);
+	fp = fopen("material.bin", "ab");
+	fclose(fp);
+	fp = fopen("agendamento.bin", "ab");
+	fclose(fp);
 	do {
 		menuInicial();
 		printf("Operacao: ");
@@ -907,7 +918,7 @@ void alterarMedico(){
 				printf("\n1 - Nome \n2 - Especialidade\n\nDeseja alterar: ");
 				scanf("%d",&op);
 				if( op==1){
-					printf("\n NOVO nome: ");
+					printf("\nNOVO nome: ");
 					fflush(stdin);
 					gets(med.nome);
 					fseek(arquivo,pos,0);
@@ -915,7 +926,7 @@ void alterarMedico(){
 					printf("Registro Atualizado!\n\n");
 				}
 				if( op==2){
-					printf("\n NOVA especialidade: ");
+					printf("\nNOVA especialidade: ");
 					fflush(stdin);
 					gets(med.especialidade);
 					fseek(arquivo,pos,0);
@@ -971,7 +982,7 @@ void alterarPaciente(){
 				printf("\n1 - Nome \n2 - CPF\n3 - Data de Nascimento\n\nDeseja alterar: ");
 				scanf("%d",&op);
 				if(op==1){
-					printf("\n NOVO nome: ");
+					printf("\nNOVO nome: ");
 					fflush(stdin);
 					gets(pac.nome);
 					fseek(arquivo,pos,0);
@@ -979,7 +990,7 @@ void alterarPaciente(){
 					printf("Registro Atualizado!\n\n");
 				}
 				if(op==2){
-					printf("\n NOVO CPF: ");
+					printf("\nNOVO CPF: ");
 					fflush(stdin);
 					gets(pac.cpf);
 					fseek(arquivo,pos,0);
@@ -987,7 +998,7 @@ void alterarPaciente(){
 					printf("Registro Atualizado!\n\n");
 				}
 				if(op==3){
-					printf("\n NOVA Data de Nascimento: ");
+					printf("\nNOVA Data de Nascimento: ");
 					fflush(stdin);
 					gets(pac.nascimento);
 					fseek(arquivo,pos,0);
@@ -1041,7 +1052,7 @@ void alterarProcedimento(){
 				printf("\n1 - Nome\n\nDeseja alterar: ");
 				scanf("%d",&op);
 				if(op==1){
-					printf("\n NOVO nome: ");
+					printf("\nNOVO nome: ");
 					fflush(stdin);
 					gets(proc.nome);
 					fseek(arquivo,pos,0);
@@ -1101,7 +1112,7 @@ void alterarAgendamento(){
 			printf("\n1 - Data\n2 - Horario\n\nDeseja alterar: ");
 			scanf("%d",&op);
 			if(op==1){
-				printf("\n NOVA data[dd/mm/aaaa]: ");
+				printf("\nNOVA data[dd/mm/aaaa]: ");
 				fflush(stdin);
 				gets(age.data);
 				fseek(fp,pos,0);
@@ -1110,10 +1121,10 @@ void alterarAgendamento(){
 				fclose(fp);
 			}
 			if(op==2){
-				printf("\n NOVO Horario\n");
-				printf("\n NOVA hora: ");
+				printf("\nNOVO Horario\n");
+				printf("\nNOVA hora: ");
 				scanf("%d", &age.hora);
-				printf("\n NOVO minuto: ");
+				printf("\nNOVO minuto: ");
 				scanf("%d", &age.minuto);
 				fseek(fp,pos,0);
 				fwrite(&age,sizeof(agendamento),1,fp);
@@ -1164,7 +1175,7 @@ void alterarMaterial(){
 				printf("\n1 - Nome \n2 - Quantidade \n3 - Valor\n\nDeseja alterar: ");
 				scanf("%d",&op);
 				if(op==1){
-					printf("\n NOVO nome: ");
+					printf("\nNOVO nome: ");
 					fflush(stdin);
 					gets(mat.nome);
 					fseek(arquivo,pos,0);
@@ -1172,14 +1183,14 @@ void alterarMaterial(){
 					printf("Registro Atualizado!\n\n");
 				}
 				if(op==2){
-					printf("\n NOVA quantidade: ");
+					printf("\nNOVA quantidade: ");
 					scanf("%d", &mat.quantidade);
 					fseek(arquivo,pos,0);
 					fwrite(&mat,sizeof(material),1,arquivo);
 					printf("Registro Atualizado!\n\n");
 				}
 				if(op==3){
-					printf("\n NOVO valor: ");
+					printf("\nNOVO valor: ");
 					scanf("%f", &mat.valor);
 					fseek(arquivo,pos,0);
 					fwrite(&mat,sizeof(material),1,arquivo);
@@ -1288,6 +1299,7 @@ void agendar() {
 		printf("Informe o minuto: ");
 		scanf("%d", &age.minuto);
 		fwrite(&age, sizeof(agendamento), 1, fp);
+		printf("Agendamento realizado com sucesso!\n");
 	}
 	fclose(fp);
 	fclose(fp2);
